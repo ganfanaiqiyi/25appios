@@ -1,8 +1,0 @@
-
-
-/**
- * 获取唯一标识的参数
- */
-export type UniqueIdOptions = {
-	success ?: (res : string) => void
-}

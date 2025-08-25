@@ -1,5 +1,5 @@
 <template>
-	<view style="background-color: #d2c3ea;">
+	<view style="">
 		<view v-if="list.length>0" class="flex justify-between pt-2 mb-2">
 			<text class="font-weight-bold text-main2 ml-2" style="font-size: 32rpx;">约炮招嫖</text>
 		</view>
@@ -12,7 +12,7 @@
 					<image class="position-absolute" src="@/static/images/share.jpg" mode="aspectFill"
 						style="width: 350rpx;height: 460rpx;border-top-left-radius: 15rpx;border-top-right-radius: 15rpx;">
 					</image>
-					<image :src="item.image2" mode="aspectFill"
+					<image :src="item.image" mode="aspectFill"
 						style="width: 350rpx;height: 460rpx;border-top-left-radius: 15rpx;border-top-right-radius: 15rpx;">
 					</image>
 				</view>
@@ -39,7 +39,7 @@
 
 				<view class="flex flex-column" style="width: 320rpx;">
 					<view class="flex justify-between align-center" style="width: 320rpx;margin-top: 50rpx;">
-						<text class="font-weight-bold" style="color: #d72e84;">梦瑶</text>
+						<text class="font-weight-bold text-ellipsis" style="color: #d72e84;">{{item.title}}</text>
 						<view class="flex justify-center align-center" style="height: 30rpx;border-radius: 60rpx;">
 							<image src="/static/images/y5.png" style="width: 15rpx;height: 15rpx;"></image>
 							<text class="text-ellipsis"

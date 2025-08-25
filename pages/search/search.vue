@@ -9,30 +9,36 @@
 				:actionStyle="{'color':'#999'}" style="margin-right: 30rpx;" searchIconSize="45rpx" @search="search()"
 				@custom="search()"></u-search>
 		</view>
+		
 		<view v-if='searchData.length > 0' class="flex flex-row justify-between align-center ml-5 mr-5 mt-5">
 			<text style="font-size: 32rpx;line-height: 40rpx;padding-left: 5rpx;color: #999;">最近搜索</text>
 			<u-icon name="trash-fill" size="32rpx" color="#999" @click="clearHistory()"></u-icon>
 		</view>
-
+		
 		<view v-if='searchData.length > 0' class="flex flex-row flex-wrap ml-5 content-between"
 			style="margin-top: 25rpx;width: 700rpx;">
-			<text v-for='(item,index) in searchData' :key="index" class="tag" @click='toSearchList(item)'>{{item}}</text>
+			<text v-for='(item,index) in searchData' :key="index" class="tag"
+				@click='toSearchList(item)'>{{item}}</text>
 		</view>
 
-		<text v-if='hotData.length > 0' class="myfont ml-5 mt-3"
-			style="font-size: 32rpx;line-height: 40rpx;padding-left: 5rpx;color: #999;">热门搜索</text>
+		<view class="mt-3">
+			<text v-if='hotData.length > 0' class="myfont ml-5"
+				style="font-size: 32rpx;line-height: 40rpx;padding-left: 5rpx;color: #999;">热门搜索</text>
+		</view>
+
 		<view v-if='hotData.length > 0' class="flex flex-row flex-wrap ml-5 content-between"
 			style="margin-top: 25rpx;width: 700rpx;">
-			<view v-for="(item,index) in hotData" :key="index" >
+			<view class="mb-2" v-for="(item,index) in hotData" :key="index">
 				<text class="tag" @click='toSearchList(item)'>{{item}}</text>
 			</view>
 		</view>
-
-		<text v-if='iconAd.length > 0' class="myfont ml-5 mt-3"
-			style="font-size: 32rpx;line-height: 40rpx;padding-left: 5rpx;color: #999;">猜你喜欢</text>
+		<view class="mt-3">
+			<text v-if='iconAd.length > 0' class="myfont ml-5"
+				style="font-size: 32rpx;line-height: 40rpx;padding-left: 5rpx;color: #999;">猜你喜欢</text>
+		</view>
 		<view v-if='iconAd.length > 0' class="flex flex-row flex-wrap ml-5 content-between"
 			style="margin-top: 25rpx;width: 700rpx;">
-			<view v-for="(item,index) in iconAd" :key="index">
+			<view class="mb-2" v-for="(item,index) in iconAd" :key="index">
 				<text class="tag2" @click='itemClick(item)'>{{item.title}}</text>
 			</view>
 		</view>

@@ -25,7 +25,8 @@ export default new Vuex.Store({
 		floatAd: [], //2
 		iconAd: [], //3
 		bannerAd: [], //4
-		gameAd:[],//5
+		yuepaoAd:[],//5
+		chunyaoAd:[],
 		forumDetail:{},
 		insConfig:[],
 		mmConfig:[]
@@ -64,7 +65,8 @@ export default new Vuex.Store({
             "url": "",
             "desc": ""
         }];
-			state.gameAd = [];
+			state.yuepaoAd = [];
+			state.chunyaoAd = [];
 			for(let ad of value.adConfig){
 				if(ad.positionId=="1"){
 					state.launchAd.push(ad);
@@ -75,7 +77,9 @@ export default new Vuex.Store({
 				}else if(ad.positionId=="4"){
 					state.bannerAd.push(ad);
 				}else if(ad.positionId=="5"){
-					state.gameAd.push(ad);
+					state.yuepaoAd.push(ad);
+				}else if(ad.positionId=="6"){
+					state.chunyaoAd.push(ad);
 				}
 			}
 			for(let value of state.gameAd){

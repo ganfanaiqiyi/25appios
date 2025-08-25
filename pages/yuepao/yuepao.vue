@@ -1,6 +1,7 @@
 <template>
 	<view>
-		<v-ypList :list="gameAd" ></v-ypList>
+		<v-ypList :list="yuepaoAd" ></v-ypList>
+		<v-cyList :list="chunyaoAd"></v-cyList>
 	</view>
 </template>
 
@@ -12,7 +13,8 @@
 	export default {
 		computed: {
 			...mapState({
-				gameAd: state => state.gameAd
+				yuepaoAd: state => state.yuepaoAd,
+				chunyaoAd: state => state.chunyaoAd
 			})
 		},
 		data() {
@@ -21,7 +23,7 @@
 			}
 		},
 		onLoad() {
-			console.warn(this.gameAd)
+			// console.warn(this.yuepaoAd)
 		},
 		methods: {
 			
