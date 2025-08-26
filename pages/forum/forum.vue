@@ -13,21 +13,7 @@
 			:scroll-top="scrollTop" v-if="indexTitle==index0" class="col-12" :style="{height:scrollHeight+'px'}"
 			:scroll-y="true">
 			<v-bannerAd :arrAd="bannerAd"></v-bannerAd>
-			<view class="flex flex-row flex-wrap mt-2" style="width: 725rpx;margin-left: 25rpx;">
-				<view style="width: 140rpx;" class="flex flex-column mb-2 align-center position-relative"
-					@click="adClick(item)" v-for="(item,index) in iconAd" :key="index">
-					<view class="position-relative" style="width: 120rpx;height: 120rpx;">
-						<image class="position-absolute" src="@/static/images/covericon.jpg"
-							style="width: 120rpx;height: 120rpx;top:0;left:0;border-radius: 20rpx;"></image>
-						<v-image3 :image="item.image"></v-image3>
-						<image class="position-absolute" src="@/static/images/iconmask.png"
-							style="width: 120rpx;height: 120rpx;top:0;left:0;color:#f2f2f2;"></image>
-						</image>
-					</view>
-					<text class="mt-1 font-weight-bold font-sm"
-						style="color:#232323;height: 30rpx;line-height: 30rpx;width: 140rpx;text-align: center;">{{item.title}}</text>
-				</view>
-			</view>
+			<v-iconAd class="mt-2" :arrAd="iconAd"></v-iconAd>
 			<view @click="goDetail(item)" v-for="(item,index) in item0" :key="index" :item="item">
 				<view class="px-2">
 					<view style="width: 710rpx;height: 2rpx;background-color: #dddddd;"></view>

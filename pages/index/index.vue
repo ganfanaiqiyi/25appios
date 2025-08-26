@@ -3,8 +3,10 @@
 		<u-status-bar></u-status-bar>
 		<view style="width: 750rpx;height: 190rpx;">
 			<view class="flex flex-row align-center mt-2" style="height:80rpx;">
-				<image src="@/static/images/name.png" class="ml-2" style="width: 170rpx;height: 70rpx;">
-				</image>
+				<view class="ml-2 flex flex-center" style="width: 170rpx;height: 70rpx;">
+					<text class="font-weight-bold" style="color:#eb2d2d ;font-size: 45rpx;font-style: italic;">❤性B站</text>
+				</view>
+				
 				<view @click="goSearch()" class="flex ml-2 flex-row align-center bg-white"
 					style="width: 510rpx;height: 60rpx;border-radius: 60rpx;">
 					<text class="ml-2 text-main" style="font-size: 28rpx;line-height: 60rpx;">搜索关键词</text>
@@ -20,21 +22,7 @@
 		<scroll-view show-scrollbar="false" @scroll="scrollPage" :scroll-top="scrollTop" v-if="indexTitle==0"
 			class="col-12" :style="{height:scrollHeight+'px'}" :scroll-y="true">
 			<v-bannerAd :arrAd="bannerAd"></v-bannerAd>
-			<view class="flex flex-row flex-wrap mt-2" style="width: 725rpx;margin-left: 25rpx;">
-				<view style="width: 140rpx;" class="flex flex-column mb-2 align-center position-relative"
-					@click="adClick(item)" v-for="(item,index) in iconAd" :key="index">
-					<view class="position-relative" style="width: 120rpx;height: 120rpx;">
-						<image class="position-absolute" src="@/static/images/covericon.jpg"
-							style="width: 120rpx;height: 120rpx;top:0;left:0;border-radius: 20rpx;"></image>
-						<v-image3 :image="item.image"></v-image3>
-						<image class="position-absolute" src="@/static/images/iconmask.png"
-							style="width: 120rpx;height: 120rpx;top:0;left:0;color:#f2f2f2;"></image>
-						</image>
-					</view>
-					<text class="mt-1 font-weight-bold font-sm"
-						style="color:#232323;height: 30rpx;line-height: 30rpx;width: 140rpx;text-align: center;">{{item.title}}</text>
-				</view>
-			</view>
+			<v-iconAd class="mt-2" :arrAd="iconAd"></v-iconAd>
 			<v-indexSwiper1 @goDetail="goDetail" :dataList="dataList0"></v-indexSwiper1>
 		</scroll-view>
 		<!-- //女优 -->

@@ -2,10 +2,12 @@
 	<view class="flex flex-wrap col-12">
 		<view @click="goDetail(item)" class="position-relative" style="width: 340.5rpx;margin-left: 23rpx;"
 			v-for="(item,index) in list" :key="index">
-			<image class="rounded" src="@/static/images/covervideo.jpg"
-				style="width: 340.5rpx;height: 230rpx;"></image>
-			<image class="rounded position-absolute" mode="aspectFill" :src="item.preview"
-				style="top:0;left:0; width: 340rpx;height: 230rpx;"></image>
+			<view class="position-absolute rounded flex flex-center"
+				style="width: 340.5rpx;height: 230rpx;background-color: #4e4e4e;top:0;left:0;">
+					<text class="font-weight-bold" style="font-size: 60rpx;color: #3e3e3e">性B站</text>
+			</view>
+			<image class="rounded" mode="aspectFill" :src="item.preview"
+				style=" width: 340rpx;height: 230rpx;"></image>
 			<view v-if="item.private==2" class="flex-center position-absolute"
 				style="width: 70rpx;height: 30rpx;background-color: #fcd02c;top:0rpx;left: 0rpx;border-top-left-radius: 8rpx;border-bottom-right-radius: 8rpx;">
 				<text class="font-weight-bold" style="font-size: 18rpx;color: #221d09;">会员</text>

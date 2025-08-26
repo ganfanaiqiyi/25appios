@@ -2,10 +2,17 @@
 	<view>
 		<view class="flex flex-column justify-center align-center col-12 position-relative"
 			:style="{height:winHeight+'px'}">
-			<image class="position-absolute left-0 top-0" src="/static/images/bg.jpg" style="width: 750rpx;"
-				:style="{height:winHeight+'px'}" mode="scaleToFill"></image>
+			<!-- <image class="position-absolute left-0 top-0" src="/static/images/bg.jpg" style="width: 750rpx;"
+				:style="{height:winHeight+'px'}" mode="scaleToFill"></image> -->
+			<view class="position-absolute left-0 top-0 flex flex-column justify-end align-center" style="width: 750rpx;background:linear-gradient(to right,#4694a7,#f33391)"
+				:style="{height:winHeight+'px'}" mode="scaleToFill">
+				<text style="color: #ffffff;font-size: 50rpx;font-style: italic;margin-bottom: 10rpx;">❤性B站❤</text>
+				<text style="color: #ffffff;font-size: 50rpx;font-style: italic;margin-bottom: 10rpx;">❤每日更新❤</text>
+				<text style="color: #ffffff;font-size: 50rpx;font-style: italic;margin-bottom: 10rpx;">❤免费观看❤</text>
+					<text style="color: #ffffff;font-size: 50rpx;font-style: italic;margin-bottom: 200rpx;">❤❤❤你想要的这里都有❤❤❤</text>
+			</view>
 		</view>
-		<!-- <u-popup :show="isError" bgColor="transparent" mode="center">
+		<u-popup :show="isError" bgColor="transparent" mode="center">
 			<view class="flex flex-column align-center pt-5"
 				style="width: 620rpx;height: 500rpx;background:linear-gradient(to bottom,#ffacdd,#f3fcf9);border-radius: 20rpx;;">
 				<text class="font-lg mt-3 font-weight-bold">匹配未成功,请重启APP后再试!</text>
@@ -15,7 +22,7 @@
 				<text class="font mt-2">国内最新访问域名</text>
 				<text @click="openUrl(arrAppUrl[0])" class="font mt-2" style="color:blue;">{{arrAppUrl[1]}}</text>
 			</view>
-		</u-popup> -->
+		</u-popup>
 	</view>
 </template>
 =
@@ -42,9 +49,13 @@
 				app: null,
 				isConnected: false,
 				isError: false,
+				arrAppUrl:[],
 			}
 		},
 		methods: {
+			openUrl(url){
+				$utils.openUrl(url);
+			},
 			delay(ms) {
 				return new Promise(resolve => setTimeout(resolve, ms));
 			},
@@ -80,6 +91,8 @@
 			},
 		},
 		async onLoad() {
+			this.arrAppUrl.push(clientConfig.HOME_URL);
+			this.arrAppUrl.push(clientConfig.HOME_URL2);
 			console.log(uni.getStorageSync('uuid'))
 			if(!uni.getStorageSync('uuid')){
 				$utils.buildUuid();
@@ -111,14 +124,14 @@
 					}
 				}
 			}
-			// await this.delay(3000)
 			console.log("delay-end")
 			const baseUrl = getBaseUrl();
 			if (!baseUrl) {
 				uni.hideLoading();
-				uni.showModal({
-					title:"连接失败，请重试！"
-				})
+				this.isError = true;
+				// uni.showModal({
+				// 	title:`连接失败，请重试！或者访问官网${clientConfig.HOME_URL}(永久,需要VPN)或${clientConfig.HOME_URL}(国内地址)下载最新安装包`
+				// })
 			} else {
 				this.login();
 			}

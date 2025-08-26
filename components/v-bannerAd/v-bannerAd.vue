@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<u-swiper @click="adClick" class="ml-2" style="width: 710rpx;" height="240rpx" :indicator="true" :autoplay="true"
-			interval="3000" indicatorActiveColor="#c12b8e" imgMode="scaleToFill" indicatorInactiveColor="#888888" keyName="image" :list="arrAd" circular>
+			interval="3000" indicatorActiveColor="#c12b8e" bgColor="#4d4d4d" imgMode="scaleToFill" indicatorInactiveColor="#888888" keyName="image" :list="arrAd" circular>
 		</u-swiper>
 	</view>
 </template>

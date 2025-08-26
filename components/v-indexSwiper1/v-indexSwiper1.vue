@@ -17,8 +17,10 @@
 						:key="index2">
 						<view class="rounded position-relative"
 							style="width: 442rpx;height: 300rpx;">
-							<image class="rounded position-absolute" src="@/static/images/covervideo.jpg"
-								style="top:0;left:0;width: 442rpx;height: 300rpx;"></image>
+							<view class="position-absolute rounded flex flex-center"
+								style="width:442rpx;height: 300rpx;background-color: #4e4e4e;top:0;left:0;">
+									<text class="font-weight-bold" style="font-size: 80rpx;color: #3e3e3e">性B站</text>
+							</view>
 							<image class="rounded position-absolute" :src="item2.preview"
 								style="top:0;left:0;width: 442rpx;height: 300rpx;"></image>
 						</view>
@@ -55,8 +57,10 @@
 						<view @click="goDetail(item2)" class="position-relative"
 							style="width: 340.5rpx;margin-left: 23rpx;" v-for="(item2,index2) in item1" :key="index2">
 							<view class="rounded position-relative" style="width: 340rpx;height: 230rpx;">
-								<image class="rounded position-absolute" src="@/static/images/covervideo.jpg"
-									style="left:0;top:0;width: 340rpx;height: 230rpx;"></image>
+								<view class="position-absolute rounded flex flex-center"
+									style="width: 340rpx;height: 230rpx;background-color: #4e4e4e;top:0;left:0;">
+										<text class="font-weight-bold" style="font-size: 60rpx;color: #3e3e3e">性B站</text>
+								</view>
 								<image class="rounded position-absolute" :src="item2.preview"
 									style="left:0;top:0;width: 340rpx;height: 230rpx;"></image>
 							</view>

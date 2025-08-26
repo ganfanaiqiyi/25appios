@@ -6,12 +6,6 @@
 			<view class="flex flex-row">
 				<image v-for="(sr,index2) in contentList" :key="index2" :src="sr" class="mr-2 rounded" mode="aspectFill"
 					style="width: 160rpx;height: 160rpx;border: 1rpx solid #ff4c5d;"></image>
-				<!-- 	<image src="@/static/logo.png" class="mr-2 rounded" mode="aspectFill"
-					style="width: 160rpx;height: 160rpx;border: 1rpx solid #ff4c5d;"></image>
-				<image src="@/static/logo.png" class="mr-2 rounded" mode="aspectFill"
-					style="width: 160rpx;height: 160rpx;border: 1rpx solid #ff4c5d;"></image>
-				<image src="@/static/logo.png" class="mr-2 rounded" mode="aspectFill"
-					style="width: 160rpx;height: 160rpx;border: 1rpx solid #ff4c5d;"></image> -->
 			</view>
 			<view class="flex flex-row align-center justify-between mt-2 mb-2" style="width: 710rpx;">
 				<text class="font-sm"

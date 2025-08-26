@@ -39,7 +39,6 @@ export default {
 		var hours = date.getHours().toString().padStart(2, '0');
 		var minutes = date.getMinutes().toString().padStart(2, '0');
 		var seconds = date.getSeconds().toString().padStart(2, '0');
-		console.log(`${year}年${month}月${day}日 ${hours}时${minutes}分${seconds}秒`)
 		return `${year}.${month}.${day}  ${hours}:${minutes}:${seconds}`;
 	},
 	getDate() {
@@ -90,7 +89,6 @@ export default {
 	dividedArray(arrVideo) {
 		let resultArr = [];
 		let tempArr = [];
-		console.warn(arrVideo);
 		arrVideo.forEach(item => {
 			tempArr.push({
 				id: item.id,
@@ -140,7 +138,6 @@ export default {
 		
 	},
 	dealVideo(res) {
-		console.warn(res);
 		let fyData = {
 			totalCount: res.total,
 			pageCount: res.per_page,

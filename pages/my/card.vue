@@ -18,8 +18,8 @@
 					<l-painter-text :text="appConfig.HOME_URL2" css="color:#ffffff; font-size: 26rpx" />
 					<l-painter-text :text="'账号:'+userInfo.username" css="color:#ffffff; font-size: 30rpx;font-weight: 700;" />
 					<l-painter-text :text="'密码:'+userInfo.password" css="color:#ffffff; font-size: 30rpx;font-weight: 700;" />
-					<l-painter-image src="@/static/logo.png"
-						css="width: 150rpx; height: 150rpx;border-radius:10rpx;margin-top:10rpx;" />
+				<!-- 	<l-painter-image src="@/static/logo.png"
+						css="width: 150rpx; height: 150rpx;border-radius:10rpx;margin-top:10rpx;" /> -->
 				</l-painter-view>
 			</l-painter-view>
 		</l-painter>

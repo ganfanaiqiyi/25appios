@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class="flex flex-column">
 		<l-painter ref="painter">
 			<l-painter-view css="width: 680rpx;height: 950rpx;margin-left:35rpx;position:relative;border-radius:10rpx;">
 				<l-painter-image src="@/static/images/share.jpg"
@@ -31,8 +31,8 @@
 					      :text="'邀请码:'+userInfo.username"
 					      css="color:#ffffff; font-size: 30rpx"
 					    />
-					<l-painter-image src="@/static/logo.png"
-						css="width: 150rpx; height: 150rpx;border-radius:10rpx;margin-top:10rpx;" />
+<!-- 					<l-painter-image src="@/static/logo.png"
+						css="width: 150rpx; height: 150rpx;border-radius:10rpx;margin-top:10rpx;" /> -->
 				</l-painter-view>
 			</l-painter-view>
 		</l-painter>

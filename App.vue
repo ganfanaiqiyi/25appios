@@ -19,7 +19,7 @@
 			});
 			// #endif
 			let systemInfo = uni.getSystemInfoSync();
-			console.warn(systemInfo);
+			// console.warn(systemInfo);
 			uni.setStorageSync("systemInfo",JSON.stringify(systemInfo));
 			this.$store.commit("initSystemInfo", systemInfo);
 			

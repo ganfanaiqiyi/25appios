@@ -9,9 +9,12 @@
 				v-for="(item,index) in list" :key="index">
 				<view class="position-relative"
 					style="width: 350rpx;height: 460rpx;border-top-left-radius: 15rpx;border-top-right-radius: 15rpx;">
-					<image class="position-absolute" src="@/static/images/share.jpg" mode="aspectFill"
-						style="width: 350rpx;height: 460rpx;border-top-left-radius: 15rpx;border-top-right-radius: 15rpx;">
-					</image>
+
+					<view class="position-absolute flex flex-center"
+						style="width: 350rpx;height: 460rpx;top:0;left:0;border-radius: 20rpx;background-color: #4e4e4e;">
+						<text class="font-weight-bold" style="font-size: 35rpx;color: #3e3e3e">性B站</text>
+					</view>
+					
 					<image :src="item.image" mode="aspectFill"
 						style="width: 350rpx;height: 460rpx;border-top-left-radius: 15rpx;border-top-right-radius: 15rpx;">
 					</image>

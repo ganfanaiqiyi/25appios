@@ -1,7 +1,14 @@
 <template>
 	<view>
 		<view class="flex flex-row align-center ml-2 bg-white mb-2" v-for="(item,index) in iconAd" :key="index" style="width: 710rpx;height: 190rpx;border-radius: 15rpx;">
-			<v-image4 :image="item.image"></v-image4>
+			<view class="position-relative" style="width: 135rpx;height: 135rpx;;">
+				<view class="position-absolute flex flex-center"
+					style="width: 135rpx;height: 135rpx;top:0;left:0;border-radius: 20rpx;background-color: #4e4e4e;">
+					<text class="font-weight-bold" style="font-size: 35rpx;color: #3e3e3e">性B站</text>
+				</view>
+					
+				<image :src="item.image" style="width: 135rpx;height: 135rpx;border-radius: 20rpx;">
+			</view>
 			<view class="ml-2" style="width: 360rpx;height: 135rpx;">
 				<text class="font-weight-bold mt-1" style="font-size: 40rpx;">{{item.title}}</text>
 				<text class="mt-1" style="color: #a1a2a4;font-size: 25rpx;">{{item.desc?item.desc:'官方推荐'}}</text>

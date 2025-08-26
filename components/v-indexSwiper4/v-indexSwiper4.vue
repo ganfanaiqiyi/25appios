@@ -2,8 +2,8 @@
 	<view class="flex col-12 flex-row flex-wrap px-3">
 		<view @click="gotoAvList(item)" v-for="(item,index) in list" :key="index" class="flex-center position-relative mt-2"
 			style="width:345rpx;height: 215rpx;">
-			<image class="position-absolute rounded" src="@/static/images/coverTag.jpg"
-				style="width: 325rpx;height: 215rpx;top:0;left:10rpx;"></image>
+			<view class="position-absolute rounded"
+				style="width: 325rpx;height: 215rpx;top:0;left:10rpx;background-color: #4e4e4e;"></view>
 			<image class="position-absolute rounded" :src="item.image"
 				style="width: 325rpx;height: 215rpx;top:0;left:10rpx;"></image>
 			<view class="position-absolute rounded"
