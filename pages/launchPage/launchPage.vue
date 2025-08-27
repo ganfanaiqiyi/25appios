@@ -4,12 +4,14 @@
 			:style="{height:winHeight+'px'}">
 			<!-- <image class="position-absolute left-0 top-0" src="/static/images/bg.jpg" style="width: 750rpx;"
 				:style="{height:winHeight+'px'}" mode="scaleToFill"></image> -->
-			<view class="position-absolute left-0 top-0 flex flex-column justify-end align-center" style="width: 750rpx;background:linear-gradient(to right,#4694a7,#f33391)"
+			<view class="position-absolute left-0 top-0 flex flex-column justify-end align-center"
+				style="width: 750rpx;background:linear-gradient(to right,#4694a7,#f33391)"
 				:style="{height:winHeight+'px'}" mode="scaleToFill">
 				<text style="color: #ffffff;font-size: 50rpx;font-style: italic;margin-bottom: 10rpx;">❤性B站❤</text>
 				<text style="color: #ffffff;font-size: 50rpx;font-style: italic;margin-bottom: 10rpx;">❤每日更新❤</text>
 				<text style="color: #ffffff;font-size: 50rpx;font-style: italic;margin-bottom: 10rpx;">❤免费观看❤</text>
-					<text style="color: #ffffff;font-size: 50rpx;font-style: italic;margin-bottom: 200rpx;">❤❤❤你想要的这里都有❤❤❤</text>
+				<text
+					style="color: #ffffff;font-size: 50rpx;font-style: italic;margin-bottom: 200rpx;">❤❤❤你想要的这里都有❤❤❤</text>
 			</view>
 		</view>
 		<u-popup :show="isError" bgColor="transparent" mode="center">
@@ -49,11 +51,11 @@
 				app: null,
 				isConnected: false,
 				isError: false,
-				arrAppUrl:[],
+				arrAppUrl: [],
 			}
 		},
 		methods: {
-			openUrl(url){
+			openUrl(url) {
 				$utils.openUrl(url);
 			},
 			delay(ms) {
@@ -78,6 +80,7 @@
 					that.requestSuccess(res);
 				}).catch((e) => {
 					console.error(e)
+					this.isError = true;
 					//登录失败
 					return;
 				})
@@ -86,7 +89,7 @@
 				uni.hideLoading();
 				this.$store.commit("initConfig", res);
 				uni.switchTab({
-						url: '/pages/daohang/daohang'
+					url: '/pages/daohang/daohang'
 				});
 			},
 		},
@@ -94,7 +97,7 @@
 			this.arrAppUrl.push(clientConfig.HOME_URL);
 			this.arrAppUrl.push(clientConfig.HOME_URL2);
 			console.log(uni.getStorageSync('uuid'))
-			if(!uni.getStorageSync('uuid')){
+			if (!uni.getStorageSync('uuid')) {
 				$utils.buildUuid();
 			}
 			console.log(uni.getStorageSync('uuid'))
@@ -108,11 +111,11 @@
 			});
 			await this.app.$onLaunched;
 
-			await checkBaseUrl()
-
-			console.log("delay-start")
-			await this.delay(1000);
-			if (!getBaseUrl()) {
+			if (clientConfig.IS_H5) {
+				this.login();
+			} else {
+				await checkBaseUrl()
+				console.log("delay-start")
 				await this.delay(1000);
 				if (!getBaseUrl()) {
 					await this.delay(1000);
@@ -120,20 +123,20 @@
 						await this.delay(1000);
 						if (!getBaseUrl()) {
 							await this.delay(1000);
+							if (!getBaseUrl()) {
+								await this.delay(1000);
+							}
 						}
 					}
 				}
-			}
-			console.log("delay-end")
-			const baseUrl = getBaseUrl();
-			if (!baseUrl) {
-				uni.hideLoading();
-				this.isError = true;
-				// uni.showModal({
-				// 	title:`连接失败，请重试！或者访问官网${clientConfig.HOME_URL}(永久,需要VPN)或${clientConfig.HOME_URL}(国内地址)下载最新安装包`
-				// })
-			} else {
-				this.login();
+				console.log("delay-end")
+				const baseUrl = getBaseUrl();
+				if (!baseUrl) {
+					uni.hideLoading();
+					this.isError = true;
+				} else {
+					this.login();
+				}
 			}
 
 		}

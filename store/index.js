@@ -7,7 +7,7 @@ export default new Vuex.Store({
 	plugins: [
 	  createPersistedState({
 	    key: 'myApp',
-	    paths: ['systemInfo', 'userInfo', 'goods', 'pipes', 'launchAd', 'floatAd', 'iconAd', 'bannerAd', 'gameAd','forumDetail','insConfig','mmConfig'],
+	    paths: ['systemInfo', 'userInfo', 'goods', 'pipes', 'launchAd', 'floatAd', 'iconAd', 'bannerAd', 'yuepaoAd','chunyaoAd','forumDetail','insConfig','mmConfig'],
 	    storage: {
 	      getItem: key => uni.getStorageSync(key),
 	      setItem: (key, value) => uni.setStorageSync(key, value),
@@ -82,9 +82,7 @@ export default new Vuex.Store({
 					state.chunyaoAd.push(ad);
 				}
 			}
-			for(let value of state.gameAd){
-				value.time = `2025-${Math.floor(Math.random()*4)+1}-${Math.floor(Math.random()*27+1)}`;
-			}
+			
 			// state.launchAd.sort((a, b) => b.sort - a.sort);
 			// state.floatAd.sort((a, b) => b.sort - a.sort);
 			// state.iconAd.sort((a, b) => b.sort - a.sort);

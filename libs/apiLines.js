@@ -98,9 +98,13 @@ function checkLines() {
 function checkLine(url, success, fail) {
 	console.warn("检测 url = " + url);
 	try {
+		if(clientConfig.IS_H5){
+			url="";
+		}
 		return uni.request({
 			sslVerify: false,
 			url: url + '/api.php/addons/appbox/api/checkline',
+			// url: '/api.php/addons/appbox/api/checkline',
 			timeout: 60 * 1000,
 
 			success: res => {

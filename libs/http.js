@@ -7,8 +7,13 @@ import {
 export default {
 	request(options = {}) {
 		return new Promise((resolve, reject) => {
-			let baseUrl = getBaseUrl();
-			options.url = options.url;
+			let baseUrl = "";
+			
+			if (!clientConfig.IS_H5) {
+				baseUrl = getBaseUrl();
+			}
+			
+			options.url = baseUrl + options.url;
 			if (options.header.token) {
 				options.header["token"] = uni.getStorageSync("token");
 				// console.warn(uni.getStorageSync("token"))
@@ -101,7 +106,7 @@ export default {
 				},
 				data: {
 					"vid": id,
-					'site':site
+					'site': site
 				},
 			}).then((res) => {
 				// console.log(res);

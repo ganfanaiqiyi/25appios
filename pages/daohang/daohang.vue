@@ -14,7 +14,7 @@
 		</scroll-view>
 
 		<u-popup :show="popShow" bgColor="transparent" mode="center">
-			<view class="flex flex-column align-center position-relative" style="width: 600rpx;height: 700rpx;">
+			<view class="flex flex-column align-center position-relative" style="width: 550rpx;height: 700rpx;">
 				<view class="position-absolute flex flex-center"
 					style="width: 550rpx;height: 550rpx;border-radius: 120rpx;background-color: #4d4d4d;left: 0;top: 0;">
 					<text class="font-weight-bold" style="font-size: 150rpx;color: #3e3e3e">性B站</text>

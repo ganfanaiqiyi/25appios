@@ -1,9 +1,9 @@
 export default {
-	IS_DEV: false,
+	IS_H5: false,
 	version: "100",
 	LINES: [
-		'http://127.0.0.1',
-		// 'https://k04oKiYm.q8mdr50b.top',
+		// 'http://127.0.0.1',
+		'https://test.v9n96j26.top',
 		// 'https://k04oKiYm.ucqas890.top',
 		// 'https://rzone-1356382030.cos.ap-guangzhou.myqcloud.com/rzone.txt',
 	],
