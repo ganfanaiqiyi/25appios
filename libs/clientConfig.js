@@ -1,5 +1,5 @@
 export default {
-	IS_H5: false,
+	IS_DEV: false,
 	version: "100",
 	LINES: [
 		// 'http://127.0.0.1',

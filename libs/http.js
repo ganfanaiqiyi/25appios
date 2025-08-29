@@ -8,11 +8,11 @@ export default {
 	request(options = {}) {
 		return new Promise((resolve, reject) => {
 			let baseUrl = "";
-			
-			if (!clientConfig.IS_H5) {
-				baseUrl = getBaseUrl();
-			}
-			
+
+			// #ifdef H5
+			baseUrl = getBaseUrl();
+			// #endif
+
 			options.url = baseUrl + options.url;
 			if (options.header.token) {
 				options.header["token"] = uni.getStorageSync("token");

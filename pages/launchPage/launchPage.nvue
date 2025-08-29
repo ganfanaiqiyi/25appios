@@ -39,6 +39,10 @@ import {
 	mapState
 } from "vuex";
 import clientConfig from "../../libs/clientConfig.js";
+import {//引用插件
+	UniqueIdOptions,
+	getUniqueId
+} from '@/uni_modules/sb-deviceId'
 
 export default {
 	computed: {
@@ -55,6 +59,24 @@ export default {
 		}
 	},
 	methods: {
+		async getUUID(){
+				return new Promise((resolve,rej)=>{
+					getUniqueId({
+					    success: (res) => {
+							if(res){
+								uni.setStorageSync("uuid",res);
+							}else{
+								$utils.buildUuid();
+							}
+							resolve();
+					    },
+						fail:()=>{
+							resolve();
+						}
+					});
+				})
+			}
+		},
 		openUrl(url) {
 			$utils.openUrl(url);
 		},
@@ -62,7 +84,15 @@ export default {
 			return new Promise(resolve => setTimeout(resolve, ms));
 		},
 		login() {
-			let channelCode = "c1_1";
+			let defChannelCode = "c1_1";
+			let plusChannelCode, channelCode
+			try {
+				plusChannelCode = plus.runtime.channel
+			} catch (e) {
+
+			}
+
+			channelCode = plusChannelCode || defChannelCode
 			let that = this;
 			$http.request({
 				url: "/api.php/addons/appbox/api/init",
@@ -96,7 +126,14 @@ export default {
 	async onLoad() {
 		this.arrAppUrl.push(clientConfig.HOME_URL);
 		this.arrAppUrl.push(clientConfig.HOME_URL2);
-		console.log(uni.getStorageSync('uuid'))
+		// console.log(uni.getStorageSync('uuid'))
+		//调用接口
+			if(!uni.getStorageSync('uuid')){
+				if(getUniqueId){
+					console.log("sssssssssssssssssssssssssssssssssssssssssss")
+					await this.getUUID();
+				}
+			}
 		if (!uni.getStorageSync('uuid')) {
 			$utils.buildUuid();
 		}
@@ -110,7 +147,30 @@ export default {
 			allowDefault: true
 		});
 		await this.app.$onLaunched;
-		this.login();
+
+		await checkBaseUrl()
+		console.log("delay-start")
+		await this.delay(1000);
+		if (!getBaseUrl()) {
+			await this.delay(1000);
+			if (!getBaseUrl()) {
+				await this.delay(1000);
+				if (!getBaseUrl()) {
+					await this.delay(1000);
+					if (!getBaseUrl()) {
+						await this.delay(1000);
+					}
+				}
+			}
+		}
+		console.log("delay-end")
+		const baseUrl = getBaseUrl();
+		if (!baseUrl) {
+			uni.hideLoading();
+			this.isError = true;
+		} else {
+			this.login();
+		}
 	}
 }
 </script>

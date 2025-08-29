@@ -4,7 +4,7 @@
 		methods: {},
 		onLaunch() {
 			console.log('App Show')
-			if (clientConfig.IS_H5) {
+			// #ifdef H5
 				uni.getSystemInfo({
 					success(e) {
 						/* 窗口宽度大于420px且不在PC页面且不在移动设备时跳转至 PC.html 页面 */
@@ -18,7 +18,7 @@
 						}
 					},
 				});
-			}
+			// #endif
 			let systemInfo = uni.getSystemInfoSync();
 			// console.warn(systemInfo);
 			uni.setStorageSync("systemInfo", JSON.stringify(systemInfo));
