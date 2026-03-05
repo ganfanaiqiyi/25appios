@@ -1,0 +1,10 @@
+
+/* 引入 interface.uts 文件中定义的变量 */
+import { UniqueIdOptions } from '../interface.uts';
+
+
+@UTSJS.keepAlive
+export function getUniqueId(options : UniqueIdOptions) {
+	let deviceId : string = YTChain.shared.getDeviceIdentifier()
+	options.success!(deviceId)
+}

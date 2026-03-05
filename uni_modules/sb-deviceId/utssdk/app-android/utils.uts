@@ -1,0 +1,146 @@
+import Settings from 'android.provider.Settings';
+import Build from 'android.os.Build';
+import UUID from 'java.util.UUID';
+import MessageDigest from 'java.security.MessageDigest';
+import TelephonyManager from 'android.telephony.TelephonyManager';
+import Context from 'android.content.Context';
+@Suppress("DEPRECATION")
+export class UniqueIdUtisl {
+	///是否申请权限
+	static requestPhoneState : boolean = true;
+	///权限有了
+	static has_read_phone_statu : boolean = false;
+	private static dev : string = "3883756";
+	//
+	static getDeviceId() : string {
+		let sbDeviceId : string = "";
+		//获得AndroidId（无需权限）
+		let androidid : string = this.getAndroidId();
+		//获得设备序列号（无需权限）
+		let serial : string = this.getSerial()
+		//获得硬件uuid（根据硬件相关属性，生成uuid）（无需权限）
+		let uuid : string = this.getDeviceUUID().replace(/-/g, "");
+		// if (this.requestPhoneState && this.has_read_phone_statu) {//申请了权限才获取 imei
+		// 	//获得设备默认IMEI（>=6.0 需要ReadPhoneState权限）
+		// 	let imei : string = this.getIMEI()
+		// 	if (!imei.isNullOrBlank()) {
+		// 		sbDeviceId += `${imei}|`
+		// 	}
+		// }
+		if (!androidid.isNullOrBlank()) {
+			sbDeviceId += `${androidid}|`
+		}
+		if (!serial.isNullOrBlank()) {
+			sbDeviceId += `${serial}|`
+		}
+		if (!uuid.isNullOrBlank()) {
+			sbDeviceId += uuid
+		}
+		//生成SHA1，统一DeviceId长度
+		if (!sbDeviceId.isNullOrBlank()) {
+			return sbDeviceId
+		}
+		//如果以上硬件标识数据均无法获得，
+		//则DeviceId默认使用系统随机数，这样保证DeviceId不为空
+		return UUID.randomUUID().toString().replace(/-/g, "")
+	}
+	/**
+	 * 获取imei
+	 */
+	private static getIMEI() : string {
+		try {
+			let context = UTSAndroid.getAppContext()! as Context
+			let tm : TelephonyManager = (context.getSystemService(Context.TELEPHONY_SERVICE)) as TelephonyManager
+			/*
+			Android 8.0（API 级别 26）及以上版本：需要动态请求 READ_PHONE_STATE 权限。
+			Android 7.1（API 级别 25）及以下版本：不支持 getImei() 方法。
+			返回设备的 IMEI（国际移动设备识别码）。
+			如果设备不支持 GSM，可能返回 null。
+			*/
+			// tm.getImei()
+
+			/*
+			对于 GSM 设备，返回 IMEI（国际移动设备识别码）。使用 SIM 卡
+			对于 CDMA 设备，返回 MEID（移动设备标识符）。不需要 SIM 卡
+			如果设备不支持电话功能（例如 Wi-Fi 平板电脑），可能返回 null。
+			*/
+			return tm.getDeviceId()
+		} catch (e) {
+			// console.log("getIMEI出错了")
+			console.log(e)
+		}
+		return ""
+	}
+	/**
+	 * 获取设备的AndroidId---恢复出厂设置会改变
+	 */
+	private static getAndroidId() : string {
+		let context = UTSAndroid.getUniActivity()! as Context
+		try {
+			return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+		} catch (e) {
+			console.log(e)
+		}
+
+		return ""
+	}
+	/**
+	 * 获得设备序列号（如：WTK7N16923005607）, 个别设备无法获取
+	 */
+	private static getSerial() : string {
+		// try {
+		// 	return Build.SERIAL
+		// } catch (e) {
+		// 	console.log(e)
+		// }
+		return this.dev
+	}
+	private static getDeviceUUID() : string {
+		try {
+			let devStr : string = this.dev
+			// 设备的基板名称（Board Name）受：如果设备硬件更换、刷入自定义 ROM、通过 OTA 更新修改基板名称或遇到系统 Bug，Build.BOARD 的值可能会发生变化
+			let board = Build.BOARD.length % 10
+			// 设备品牌"samsung"（三星设备）--受：如果设备刷入自定义 ROM、通过 OTA 更新修改品牌、更换硬件或遇到系统 Bug，Build.BRAND 的值可能会发生变化
+			let brand = Build.BRAND.length % 10
+			// 设备的工业设计名称---例："sailfish"（Google Pixel 的设备名称）---如果设备刷入自定义 ROM、通过 OTA 更新修改设备名称、更换硬件或遇到系统 Bug，Build.DEVICE 的值可能会发生变化
+			let device = Build.DEVICE.length % 10
+			// 设备的硬件名称 例："qcom"（高通芯片组）、"mt6797"（联发科芯片组）----除非设备的硬件发生变化，否则 Build.HARDWARE 的值是稳定的。（更换了芯片组）
+			let hardware = Build.HARDWARE.length % 10
+			// 设备的构建 ID 例："QP1A.191005.007"（Android 10 的构建 ID）。 系统升级会变--不用
+			// let id = Build.ID.length % 10
+			// 设备的型号（Model Name）例："Pixel"（Google Pixel）、"SM-G950F"（三星 Galaxy S8）。受这些影响：如果设备刷入自定义 ROM、通过 OTA 更新修改型号、更换硬件或遇到系统 Bug，Build.MODEL 的值可能会发生变化
+			let model = Build.MODEL.length % 10
+			// 设备的产品名称 例："sailfish"（Google Pixel 的产品名称）。受：如果设备刷入自定义 ROM、通过 OTA 更新修改产品名称或遇到系统 Bug，Build.PRODUCT 的值可能会发生变化
+			let product = Build.PRODUCT.length % 10
+			// 设备的序列号（Serial Number）。从 Android 10（API 级别 29）开始，普通应用无法直接获取设备序列号，除非应用是设备所有者或配置文件所有者
+			// let serial = Build.SERIAL.length % 10
+			devStr = `${devStr}${board}${brand}${device}${hardware}${model}${product}`
+			let hash = this.hashCode(devStr);
+			let serialHash = this.hashCode(this.dev)
+			let uuid = new UUID(hash.toLong(), serialHash.toLong())
+			return uuid.toString();
+
+		} catch (e) {
+			console.log(e)
+		}
+		return "";
+	}
+
+	private static hashCode(str : string) : number {
+		let hash = 0;
+		if (str.length == 0) return hash;
+
+		for (let i = 0; i < str.length; i++) {
+			const char = str.charCodeAt(i);
+			hash = (hash << 5) - hash + char!;
+			hash |= 0; // 转换为 32 位整数
+		}
+
+		return hash;
+	}
+	private static stringToUtf8Bytes(str : string) : Uint8Array {
+		const encoder = new TextEncoder();
+		return encoder.encode(str);
+	}
+
+}

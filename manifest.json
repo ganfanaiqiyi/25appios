@@ -108,24 +108,24 @@
         "enable" : false
     },
     "vueVersion" : "2",
-    "h5" : {
-        "devServer" : {
-            // "proxy" : {
-            //     "/api.php" : {
-            //         "target" : "http://127.0.0.1",
-            //         "changeOrigin" : true,
-            //         "pathRewrite" : {
-            //             "^/api.php" : "/api.php"
-            //         }
-            //     }
-            // },
-            "https" : true
-        },
-        "router" : {
-            "mode" : "history"
-        }
-		// "publicPath": "https://cdn.example.com/"
-    },
+  //   "h5" : {
+  //       "devServer" : {
+  //           // "proxy" : {
+  //           //     "/api.php" : {
+  //           //         "target" : "http://127.0.0.1",
+  //           //         "changeOrigin" : true,
+  //           //         "pathRewrite" : {
+  //           //             "^/api.php" : "/api.php"
+  //           //         }
+  //           //     }
+  //           // },
+  //           "https" : true
+  //       },
+  //       "router" : {
+  //           "mode" : "history"
+  //       }
+		// // "publicPath": "https://cdn.example.com/"
+  //   },
     "channel_list" : [
         {
             "id" : "c1_1",

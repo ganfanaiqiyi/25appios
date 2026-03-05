@@ -210,12 +210,7 @@
 		"selectedColor": "#c12b8e",
 		"backgroundColor": "#f8f8f8",
 		"borderStyle": "#ebebeb",
-		"list": [{
-				"iconPath": "/static/images/t1.jpg",
-				"selectedIconPath": "/static/images/t11.jpg",
-				"pagePath": "pages/daohang/daohang",
-				"text": "导航页"
-			}, {
+		"list": [ {
 				"iconPath": "/static/images/t2.jpg",
 				"selectedIconPath": "/static/images/t22.jpg",
 				"pagePath": "pages/index/index",
@@ -225,11 +220,6 @@
 				"selectedIconPath": "/static/images/t44.jpg",
 				"pagePath": "pages/forum/forum",
 				"text": "吃瓜圈"
-			}, {
-				"iconPath": "/static/images/t3.jpg",
-				"selectedIconPath": "/static/images/t33.jpg",
-				"pagePath": "pages/yuepao/yuepao",
-				"text": "约啪"
 			},
 			{
 				"iconPath": "/static/images/t5.jpg",

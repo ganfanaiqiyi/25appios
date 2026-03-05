@@ -105,6 +105,7 @@ export default {
 		uni.showLoading({
 			title: "匹配最佳线路中"
 		});
+		checkBaseUrl();
 
 		this.app = getApp({
 			allowDefault: true

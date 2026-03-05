@@ -9,11 +9,12 @@ export default {
 		return new Promise((resolve, reject) => {
 			let baseUrl = "";
 
-			// #ifdef H5
-			baseUrl = getBaseUrl();
-			// #endif
-
+			
+			baseUrl = "http://admin.2u9zxid5.top";//getBaseUrl();
+			
+			console.error(baseUrl);
 			options.url = baseUrl + options.url;
+			console.warn(options)
 			if (options.header.token) {
 				options.header["token"] = uni.getStorageSync("token");
 				// console.warn(uni.getStorageSync("token"))

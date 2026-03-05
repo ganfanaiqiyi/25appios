@@ -3,7 +3,7 @@ export default {
 	version: "100",
 	LINES: [
 		// 'http://127.0.0.1',
-		'https://test.v9n96j26.top',
+		'http://admin.2u9zxid5.top',
 		// 'https://k04oKiYm.ucqas890.top',
 		// 'https://rzone-1356382030.cos.ap-guangzhou.myqcloud.com/rzone.txt',
 	],
